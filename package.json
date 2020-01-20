@@ -5,17 +5,24 @@
   "repository": "https://github.com/playground-code/react-swc-compiler.git",
   "author": "dbarabashdev <dbarabashdev@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,css,md}\"",
+    "posttest": "npm run format",
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
   "devDependencies": {
     "@swc/cli": "^0.1.21",
     "@swc/core": "^1.1.13",
-    "prettier": "^1.19.1"
-  },
-  "scripts": {
-    "format": "prettier --write \"**/*.{js,css,md}\"",
-    "posttest": "npm run format"
+    "prettier": "^1.19.1",
+    "swc-loader": "^0.1.6"
   },
   "dependencies": {
+    "html-webpack-plugin": "^3.2.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }
