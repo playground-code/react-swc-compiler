@@ -1,35 +1,55 @@
 const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-  entry: "./index.js",
+  mode: "production",
+  entry: path.join(__dirname, "index.js"),
   output: {
-    path: __dirname + "/bundle",
+    path: path.join(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "/",
   },
   devServer: {
-    inline: true,
-    port: 1234,
+    contentBase: path.join(__dirname, "build"),
+    compress: true,
+    port: 9000,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
   module: {
     rules: [
       {
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: "swc-loader",
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: require.resolve("swc-loader"),
+          options: {
+            jsc: {
+              parser: {
+                syntax: "ecmascript",
+                jsx: true,
+              },
+              transform: {
+                react: {
+                  pragma: "React.createElement",
+                  pragmaFrag: "React.Fragment",
+                  throwIfNamespace: true,
+                  development: false,
+                  useBuiltins: false,
+                },
+              },
+            },
+          },
+        },
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./bundle/index.html",
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "index.html",
     }),
   ],
-  devServer: {
-    contentBase: "./bundle",
-  },
-  stats: {
-    children: false,
-  },
 }
