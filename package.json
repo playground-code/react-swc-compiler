@@ -1,0 +1,17 @@
+{
+  "name": "react-swc-compiler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/playground-code/react-swc-compiler.git",
+  "author": "dbarabashdev <dbarabashdev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/cli": "^0.1.21",
+    "@swc/core": "^1.1.13",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,css,md}\"",
+    "posttest": "npm run format"
+  }
+}
