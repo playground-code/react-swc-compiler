@@ -13,5 +13,9 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,css,md}\"",
     "posttest": "npm run format"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }

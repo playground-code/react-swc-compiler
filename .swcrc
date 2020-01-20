@@ -10,5 +10,24 @@
     "module": {
       "type": "amd"
     }
-  }
+  },
+  {
+    "jsc": {
+      "transform": {
+        "react": {
+          "pragma": "React.createElement",
+          "pragmaFrag": "React.Fragment",
+          "throwIfNamespace": true,
+          "development": false,
+          "useBuiltins": false
+        },
+        "optimizer": {
+          "globals": {
+            "vars": {
+              "__DEBUG__": "true"
+            }
+          }
+        }
+      }
+    }
 ]
