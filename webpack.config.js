@@ -3,21 +3,47 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   mode: "production",
-  entry: path.join(__dirname, "index.js"),
+  performance: {
+    hints: false,
+  },
+  stats: {
+    all: undefined,
+  },
+  entry: {
+    index: "./index.js",
+    another: "./App.js",
+  },
   output: {
     path: path.join(__dirname, "build"),
-    filename: "bundle.js",
+    filename: "[name][contenthash].js",
   },
   devServer: {
     contentBase: path.join(__dirname, "build"),
     compress: true,
+    stats: {
+      entrypoints: false,
+      errors: false,
+      chunkGroups: false,
+    },
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module, chunks, cacheGroupKey) {
+            const moduleFileName = module
+              .identifier()
+              .split("/")
+              .reduceRight(item => item)
+            const allChunksNames = chunks.map(item => item.name).join("~")
+            return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`
+          },
+          chunks: "all",
+        },
+      },
     },
   },
-  devtool: "evel-source-map",
   module: {
     rules: [
       {

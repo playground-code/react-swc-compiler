@@ -8,7 +8,7 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,css,md}\"",
     "posttest": "npm run format",
-    "start:dev": "webpack-dev-server",
+    "start:dev": "webpack-dev-server --mode production",
     "build": "webpack --mode production"
   },
   "devDependencies": {
