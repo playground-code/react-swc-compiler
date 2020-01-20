@@ -12,6 +12,7 @@ module.exports = {
     contentBase: path.join(__dirname, "build"),
     compress: true,
     port: 9000,
+    disableHostCheck: true,
   },
   optimization: {
     splitChunks: {
