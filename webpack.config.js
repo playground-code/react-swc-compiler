@@ -11,14 +11,13 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "build"),
     compress: true,
-    port: 9000,
-    disableHostCheck: true,
   },
   optimization: {
     splitChunks: {
       chunks: "all",
     },
   },
+  devtool: "evel-source-map",
   module: {
     rules: [
       {
